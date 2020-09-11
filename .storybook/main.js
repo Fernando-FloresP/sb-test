@@ -7,10 +7,12 @@ module.exports = {
   ],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   webpackFinal: async (config, { configType }) => {
-    config.resolve.modules = [
-      path.resolve(__dirname, "..", "src"),
-      "node_modules",
-    ];
+    config.resolve.modules = [path.resolve(__dirname, ".."), "node_modules"];
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@/Components": path.resolve(__dirname, "../src/components"),
+    };
 
     return config;
   },
